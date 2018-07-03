@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="header/header-home::header('Bear Photo-'+${photo.getTitle()},null)"/>
+<body>
+    <div style="width: 100%">
+        <img th:src="@{${photo.getUrl()}}" style="width: 100%; height: auto"/>
+    </div>
+</body>
+</html>
