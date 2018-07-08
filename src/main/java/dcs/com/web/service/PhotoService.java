@@ -15,9 +15,10 @@ public interface PhotoService {
     void addPhoto(PhotoPO photo);
     void addPhoto(String title,String name,String userName,String url,String categories,int width,int height);
     boolean upload(MultipartFile file, String title, String categories, UserPO user);
-    void addPhotoHitNum(long pid);
-    void addPhotoCollectNum(long pid);
-    void addPhotoDownloadNum(long pid);
-    void addPhotoLikeNum(long pid);
+//    void addPhotoHitNum(long pid);
+//    void addPhotoCollectNum(long pid);
+//    void addPhotoDownloadNum(long pid);
+//    void addPhotoLikeNum(long pid);
+    void addOnePhotoNum(long pid, String methodName);
     void addPhotosByFile(File file);
 }

@@ -5,17 +5,19 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
 public class UserUtils {
+
+    //md5加盐加密密码
     public static String passwordEncode(String password){
         Random r = new Random();
-        StringBuilder sb = new StringBuilder(16);
-        sb.append(r.nextInt(99999999)).append(r.nextInt(99999999));
-        int len = sb.length();
+        StringBuilder stringBuilder = new StringBuilder(16);
+        stringBuilder.append(r.nextInt(99999999)).append(r.nextInt(99999999));
+        int len = stringBuilder.length();
         if (len < 16) {
             for (int i = 0; i < 16 - len; i++) {
-                sb.append("0");
+                stringBuilder.append("0");
             }
         }
-        String salt = sb.toString();
+        String salt = stringBuilder.toString();
         password = md5Hex(password + salt);
         char[] cs = new char[48];
         for (int i = 0; i < 48; i += 3) {

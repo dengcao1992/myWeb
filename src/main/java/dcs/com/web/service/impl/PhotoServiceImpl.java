@@ -76,51 +76,56 @@ public class PhotoServiceImpl implements PhotoService{
         photoDao.saveAndFlush(photo);
     }
 
-    @Override
-    public void addPhotoHitNum(long pid) {
-        PhotoPO photo = getPhoto(pid);
-        photo.setHit(photo.getHit() + 1);
-        addPhoto(photo);
-    }
 
-    @Override
-    public void addPhotoCollectNum(long pid) {
-        PhotoPO photo = getPhoto(pid);
-        photo.setCollectNum(photo.getCollectNum() + 1);
-        addPhoto(photo);
-    }
-
-    @Override
-    public void addPhotoDownloadNum(long pid) {
-        PhotoPO photo = getPhoto(pid);
-        photo.setDownloadNum(photo.getDownloadNum() + 1);
-        addPhoto(photo);
-    }
-
-    @Override
-    public void addPhotoLikeNum(long pid) {
-        PhotoPO photo = getPhoto(pid);
-        photo.setLickNum(photo.getLickNum() + 1);
-        addPhoto(photo);
-    }
 ///未实现
     @Override
     public void addPhotosByFile(File file) {
 
     }
-    ///反射实现所有点击数添加，未实现
-//    private void addOnePhotoNum(long pid, String methodName) {
-//        PhotoPO photo = getPhoto(pid);
-//        Class photoClass = photo.getClass();
-//        Method photoMethod = null;
-//        try {
-//            photoMethod = photoClass.getMethod(methodName,Integer.class);
-//        } catch (NoSuchMethodException e) {
-//            e.printStackTrace();
-//        }
-//        photoMethod.invoke(photoClass,)
-//
-//    }
+
+    @Override
+    public void addOnePhotoNum(long pid, String methodName) {
+        final String photoHitNum = "hit";
+        final String photoCollectNum = "collect";
+        final String photoDownloadNum = "Download";
+        final String photoLikeNum = "Like";
+        if (methodName.equals(photoHitNum)){
+            addPhotoHitNum(pid);
+        }
+        if (methodName.equals(photoCollectNum)){
+            addPhotoCollectNum(pid);
+        }
+        if (methodName.equals(photoDownloadNum)){
+            addPhotoDownloadNum(pid);
+        }
+        if (methodName.equals(photoLikeNum)){
+            addPhotoLikeNum(pid);
+        }
+    }
+
+    private void addPhotoHitNum(long pid) {
+        PhotoPO photo = getPhoto(pid);
+        photo.setHit(photo.getHit() + 1);
+        addPhoto(photo);
+    }
+
+    private void addPhotoCollectNum(long pid) {
+        PhotoPO photo = getPhoto(pid);
+        photo.setCollectNum(photo.getCollectNum() + 1);
+        addPhoto(photo);
+    }
+
+    private void addPhotoDownloadNum(long pid) {
+        PhotoPO photo = getPhoto(pid);
+        photo.setDownloadNum(photo.getDownloadNum() + 1);
+        addPhoto(photo);
+    }
+
+    private void addPhotoLikeNum(long pid) {
+        PhotoPO photo = getPhoto(pid);
+        photo.setLickNum(photo.getLickNum() + 1);
+        addPhoto(photo);
+    }
 
     public PhotoDao getPhotoDao() {
         return photoDao;
